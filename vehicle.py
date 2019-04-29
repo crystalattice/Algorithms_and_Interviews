@@ -8,7 +8,7 @@ class Vehicle:
         self.wheel_rpm = rpm
         self.num_wheels = wheels
         self.num_doors = doors
-        self.engine_size = engine  # Cubic centimeters
+        self.engine_size = engine  # Liters
         self.vehicle_weight = weight  # Pounds
         self.wheel_diam = wheel_diam  # Inches
 
@@ -17,6 +17,12 @@ class Vehicle:
         self.brake_power = 20  # feet/sec slowdown
         self.thinking_distance = 0
         self.braking_distance = 0
+
+    def __repr__(self):
+        """Return string representation of Vehicle."""
+        return f"Speed:{self.vehicle_speed}, Wheel RPM:{self.wheel_rpm}, {self.num_wheels} wheels, " \
+            f"{self.num_doors} doors, {self.engine_size} liter engine, {self.vehicle_weight} pounds curb weight, " \
+            f"{self.wheel_diam} inch wheels"
 
     def calc_speed(self):
         """Determine vehicle speed based on outer diameter of wheel and RPM of tire.
@@ -39,3 +45,12 @@ class Vehicle:
         self.stopping_time = self.stopping_distance / self.brake_power
         self.thinking_distance = self.stopping_distance * 2
         self.braking_distance = (0.5 * self.stopping_distance * self.stopping_time) + (2 * self.thinking_distance)
+
+
+if __name__ == "__main__":
+    car = Vehicle(0, 1000, 4, 2, 2.0, 3200, 19)
+    print(car)
+    car.calc_speed()
+    print(f"{car.vehicle_speed} mph")
+    car.calc_braking_distance()
+    print(f"{car.braking_distance} feet")
