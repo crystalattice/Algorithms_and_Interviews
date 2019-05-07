@@ -47,10 +47,39 @@ class Vehicle:
         self.braking_distance = (0.5 * self.stopping_distance * self.stopping_time) + (2 * self.thinking_distance)
 
 
+class Car(Vehicle):
+    """Subclass of Vehicle
+
+    Inherits all base parameters, but adds engine type and acceleration.
+    Default values set for number of wheels and doors.
+    """
+    def __init__(self, speed=0, rpm=0, wheels=4, doors=4, engine=0, weight=0, wheel_diam=0, engine_type="Gasoline"):
+        super(Car, self).__init__(speed, rpm, wheels, doors, engine, weight, wheel_diam)  # Use superclass parameters
+        self.engine_type = engine_type  # Set new parameters
+        self.car_acceleration = 0
+
+    def acceleration(self, start_speed, end_speed, time_required):
+        """Calculate the average acceleration of a car
+
+        Formula: a = dv/dt, where a = acceleration, dv = change in velocity in mph, and dt = time used in seconds
+        """
+        speed_delta = (end_speed - start_speed) * 5280 / 3600  # Convert mph to ft/sec
+        self.car_acceleration = speed_delta / time_required
+        return self.car_acceleration
+
+
 if __name__ == "__main__":
-    car = Vehicle(0, 1000, 4, 2, 2.0, 3200, 19)
-    print(car)
-    car.calc_speed()
-    print(f"{car.vehicle_speed} mph")
-    car.calc_braking_distance()
-    print(f"{car.braking_distance} feet")
+    # car = Vehicle(0, 1000, 4, 2, 2.0, 3200, 19)
+    # print(car)
+    # car.calc_speed()
+    # print(f"Vehicle speed: {car.vehicle_speed} mph")
+    # car.calc_braking_distance()
+    # print(f"Braking distance: {car.braking_distance} feet")
+
+    sedan = Car(30, 1000, engine=1.5, weight=3200, wheel_diam=19)
+    print(sedan)
+    print(f"Acceleration: {sedan.acceleration(sedan.vehicle_speed, 60, 8)} ft/sec^2")
+    sedan.calc_speed()
+    print(f"Vehicle speed: {sedan.vehicle_speed} mph")
+    sedan.calc_braking_distance()
+    print(f"Braking distance: {sedan.braking_distance} feet")
