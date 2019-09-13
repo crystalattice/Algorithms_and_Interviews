@@ -1,4 +1,4 @@
-from sqlalchemy_declarative import Base, Tools
+from sql.sqlalchemy_declarative import Base, Tools
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 

@@ -32,8 +32,8 @@ class Graph:
         V is the number of vertices in graph
         """
         result = []  # Store MST
-        i = 0  # Sorted edges
-        e = 0  # Used for result[]
+        edge_counter = 0  # Sorted edges
+        mst_counter = 0  # Used for result[]
         parent = []
         rank = []
 
@@ -44,16 +44,16 @@ class Graph:
             parent.append(node)
             rank.append(0)
 
-        while e < self.verts - 1:  # Number of edges to be taken is equal to V-1
-            u, v, w = self.graph[i]  # Extract edge components from graph
-            i = i + 1
+        while mst_counter < self.verts - 1:  # Number of edges to be taken is equal to V-1
+            u, v, w = self.graph[edge_counter]  # Extract edge components from graph
+            edge_counter = edge_counter + 1
 
             # Find smallest edge
             x = self.find(parent, u)
             y = self.find(parent, v)
 
             if x != y:  # Check if including this edge doesn't cause cycle
-                e = e + 1
+                mst_counter = mst_counter + 1
                 result.append([u, v, w])  # Include edge in result
                 self.union(parent, rank, x, y)
             # Else discard the edge

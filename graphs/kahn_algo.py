@@ -12,24 +12,24 @@ class Graph:
     def topo_sort(self):
         in_degree = [0] * self.verts  # List to store in-degrees of all vertices
         visited_verts = 0  # Initialize count of visited vertices
-        top_order = []  # List of topo sorted vertices
-        queue = []  # List of vertices with 0 in-degrees
+        top_order = []  # List of topological sorted vertices
+        zero_queue = []  # List of vertices with 0 in-degrees
 
-        for i in self.graph:  # Traverse adjacency lists to fill in-degrees of vertices.
+        for i in self.graph:  # Traverse adjacent lists to fill in-degrees of vertices.
             for j in self.graph[i]:
                 in_degree[j] += 1
 
-        for i in range(self.verts):   # Enqueue all in-degree = 0 vertices
+        for i in range(self.verts):   # Enqueue in-degree = 0 vertices
             if in_degree[i] == 0:
-                queue.append(i)
+                zero_queue.append(i)
 
-        while queue:  # Dequeue vertices from queue and enqueue adjacent vertex if adjacent in-degree = 0
-            u = queue.pop(0)
+        while zero_queue:  # Dequeue vertices from zero_queue and enqueue adjacent vertex if adjacent in-degree = 0
+            u = zero_queue.pop(0)
             top_order.append(u)
-            for i in self.graph[u]:  # Iterate through all neighbouring nodes decrease their in-degree by 1
+            for i in self.graph[u]:  # Decrease adjacent nodes in-degree by 1
                 in_degree[i] -= 1
-                if in_degree[i] == 0:  # If in-degree becomes zero, add it to queue
-                    queue.append(i)
+                if in_degree[i] == 0:  # If in-degree becomes zero, add it to zero_queue
+                    zero_queue.append(i)
             visited_verts += 1
 
         try:

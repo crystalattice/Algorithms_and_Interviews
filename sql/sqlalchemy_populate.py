@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from sqlalchemy_declarative import Tools, Base
+from sql.sqlalchemy_declarative import Tools, Base
 
 engine = create_engine("sqlite:///sqlalchemy_example.db")
 Base.metadata.bind = engine

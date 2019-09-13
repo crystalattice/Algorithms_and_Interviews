@@ -1,19 +1,19 @@
 def brent(f, x0):
     # Search successive powers of two
-    power = lam = 1
+    power = lam_length = 1
     tortoise = x0
     hare = f(x0)  # f(x0) is the element/node next to x0.
     while tortoise != hare:
-        if power == lam:  # Search for a new power of two
+        if power == lam_length:  # Search for a new power of two
             tortoise = hare
             power *= 2
-            lam = 0
+            lam_length = 0
         hare = f(hare)
-        lam += 1
+        lam_length += 1
 
     # Find the position of the first repetition of length λ
     tortoise = hare = x0
-    for i in range(lam):  # range(lam) produces a list with the values 0, 1, ... , lam-1
+    for i in range(lam_length):  # range(lam_length) produces a list with the values 0, 1, ... , lam_length-1
         hare = f(hare)  # The distance between the hare and tortoise is now λ.
 
     # Hare and tortoise move at same speed until they agree
@@ -23,7 +23,7 @@ def brent(f, x0):
         hare = f(hare)
         mu += 1
 
-    return lam, mu
+    return lam_length, mu
 
 
 def func(x):

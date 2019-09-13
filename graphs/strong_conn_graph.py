@@ -45,7 +45,6 @@ class Graph:
 
     def dfs_traverse(self):
         """Perform DFS traversal"""
-
         # Mark all the vertices as not visited and initialize data structures
         disc_time = [-1] * self.vert
         low = [-1] * self.vert

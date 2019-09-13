@@ -29,7 +29,6 @@ class Graph:
 
     def mst_func(self):
         """Create MST for graph"""
-
         key = [sys.maxsize] * self.verts  # Key values used to pick minimum weight edge in cut
         parent = [None] * self.verts  # Store constructed MST
         key[0] = 0  # Create first vertex
