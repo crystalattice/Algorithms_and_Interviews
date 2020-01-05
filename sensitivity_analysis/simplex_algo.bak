@@ -134,17 +134,16 @@ while reached == 0:
     i = 0
     while i < len(table):
         if i != r:
-            table[i, 2:len(table[0])] = \
-                table[i, 2:len(table[0])] - table[i][3 + k] * table[r, 2:len(table[0])]
-    i += 1
+            table[i, 2:len(table[0])] = table[i, 2:len(table[0])] - table[i][3 + k] * table[r, 2:len(table[0])]
+        i += 1
 
-# assign the new basic variable
-table[r][0] = k
-table[r][1] = c[r]
+    # assign the new basic variable
+    table[r][0] = k
+    table[r][1] = c[r]
 
-print()
-print()
-itr += 1
+    print()
+    print()
+    itr += 1
 
 print()
 
