@@ -40,6 +40,7 @@ class Card:
 
 class Deck(Card):
     """Standard 52 card deck of cards"""
+
     def __init__(self, rank, suit, value=None):
         """Inherit parent class initialization and add card value"""
         super().__init__(rank, suit)
